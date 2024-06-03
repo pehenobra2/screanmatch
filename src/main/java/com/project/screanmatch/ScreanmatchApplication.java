@@ -1,11 +1,18 @@
 package com.project.screanmatch;
 
+import com.project.screanmatch.model.Episodios;
 import com.project.screanmatch.model.Serie;
+import com.project.screanmatch.model.Temporada;
+import com.project.screanmatch.principal.Prin;
 import com.project.screanmatch.service.ConsumoAPI;
 import com.project.screanmatch.service.ConverteDados;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class ScreanmatchApplication implements CommandLineRunner {
@@ -16,13 +23,9 @@ public class ScreanmatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		ConsumoAPI consumoAPI = new ConsumoAPI();
 
-		var json = consumoAPI.obterDados("http://www.omdbapi.com/?t=game+of+thrones&apikey=3edd966a");
+		Prin prin = new Prin();
+		prin.exibeMenu();
 
-		System.out.println(json);
-		ConverteDados conversor = new ConverteDados();
-		Serie dados = conversor.obterDados(json, Serie.class);
-		System.out.println(dados);
 	}
 }
